@@ -1,20 +1,85 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Card from "./components/Card";
+import DetailScreen from "./screens/DetailScreen/DetailScreen";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const items = [
+  {
+    image: require("./assets/livingroom.jpg"),
+    title: "Dnevni boravak",
+    name: "dnevniboravak",
+  },
+  {
+    image: require("./assets/kitchen.jpg"),
+    title: "Kuhinja",
+    name: "kuhinja",
+  },
+  {
+    image: require("./assets/bedroom.jpg"),
+    title: "Spavaća soba",
+    name: "spavaca",
+  },
+  {
+    image: require("./assets/kidsbedroom.jpg"),
+    title: "Dječija soba",
+    name: "djecija",
+  },
+  {
+    image: require("./assets/bathroom.jpg"),
+    title: "WC",
+    name: "wc",
+  },
+];
+
+const HomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        {items.map((item, key) => (
+          <TouchableOpacity
+            key={key}
+            onPress={() => navigation.navigate(item.title, { item })}
+          >
+            <Card imageSource={item.image} title={item.title} description="" />
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#f0f0f0",
   },
 });
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        {items.map((item, key) => (
+          <Stack.Screen key={key} name={item.title} component={DetailScreen} />
+        ))}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
