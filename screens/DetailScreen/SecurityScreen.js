@@ -1,17 +1,13 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
-import { bluetoothSettings } from "./bluetoothSettings";
 import { Switch } from "../../components/Switch";
+import { bluetoothSettings } from "./bluetoothSettings";
 
-const DetailScreen = ({ route }) => {
-  const { title, image, name } = route.params.item;
-  const items = bluetoothSettings[name] || { switch: [] };
+export const SecurityScreen = () => {
+  const items = bluetoothSettings.security || { switch: [] };
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={image} style={styles.image} />
-      </View>
       <View style={styles.contain}>
         <ScrollView
           style={{ width: "100%" }}
@@ -44,8 +40,9 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexDirection: "row",
-    justifyContent: "flex-start",
-    gap: 20,
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    //gap: 20,
     paddingHorizontal: 16,
     paddingVertical: 32,
   },
@@ -54,5 +51,3 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
-
-export default DetailScreen;
