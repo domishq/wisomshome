@@ -15,11 +15,11 @@ const App = () => {
     <NavigationContainer>
       <Tab.Navigator tabBar={(props) => <BottomNavBar {...props} />}>
         <Tab.Screen
-          name="Home"
+          name="Kuća"
           component={HomeScreenStack}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="Security" component={SecurityScreen} />
+        <Tab.Screen name="Sigurnost" component={SecurityScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

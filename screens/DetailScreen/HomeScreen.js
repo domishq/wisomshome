@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 export const HomeScreenStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Prostorije" component={HomeScreen} />
       {items.map((item, key) => (
         <Stack.Screen key={key} name={item.title} component={DetailScreen} />
       ))}
