@@ -10,6 +10,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Card from "../../components/Card";
+import DetailScreen from "./DetailScreen";
 
 const Stack = createStackNavigator();
 
@@ -68,17 +69,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = () => {
+export const HomeScreenStack = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        {items.map((item, key) => (
-          <Stack.Screen key={key} name={item.title} component={DetailScreen} />
-        ))}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      {items.map((item, key) => (
+        <Stack.Screen key={key} name={item.title} component={DetailScreen} />
+      ))}
+    </Stack.Navigator>
   );
 };
-
-export default App;

@@ -14,6 +14,7 @@ const DetailScreen = ({ route }) => {
       </View>
       <View style={styles.contain}>
         <ScrollView
+          horizontal
           style={{ width: "100%" }}
           contentContainerStyle={styles.scrollContainer}
         >

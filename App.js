@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DetailScreen from "./screens/DetailScreen/DetailScreen";
 import BottomNavBar from "./components/BottomNavbar";
 import { SecurityScreen } from "./screens/DetailScreen/SecurityScreen";
-import { HomeScreen } from "./screens/DetailScreen/HomeScreen";
+import { HomeScreen, HomeScreenStack } from "./screens/DetailScreen/HomeScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Tab = createBottomTabNavigator();
@@ -14,7 +14,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator tabBar={(props) => <BottomNavBar {...props} />}>
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen
+          name="Home"
+          component={HomeScreenStack}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen name="Security" component={SecurityScreen} />
       </Tab.Navigator>
     </NavigationContainer>
