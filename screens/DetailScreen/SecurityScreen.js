@@ -1,10 +1,27 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Button,
+} from "react-native";
 import { Switch } from "../../components/Switch";
 import { bluetoothSettings } from "./bluetoothSettings";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const SecurityScreen = () => {
   const items = bluetoothSettings.security || { switch: [] };
+
+  const resetAsyncStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log("AsyncStorage cleared.");
+    } catch (error) {
+      console.error("Error clearing AsyncStorage: ", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -18,6 +35,7 @@ export const SecurityScreen = () => {
           ))}
         </ScrollView>
       </View>
+      <Button title="Reset AsyncStorage" onPress={resetAsyncStorage} />
     </View>
   );
 };
