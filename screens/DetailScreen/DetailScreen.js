@@ -42,7 +42,12 @@ const DetailScreen = ({ route }) => {
         >
           {items.length > 0 &&
             items.map((item, key) => (
-              <Switch key={key} title={item.name} icon={item.icon}></Switch>
+              <Switch
+                key={key}
+                mapa={item.key}
+                title={item.name}
+                icon={item.icon}
+              ></Switch>
             ))}
         </ScrollView>
         <AddComponentButton room={name} updateItems={updateItems} />

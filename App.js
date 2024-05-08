@@ -7,6 +7,7 @@ import { SecurityScreen } from "./screens/DetailScreen/SecurityScreen";
 import { HomeScreen, HomeScreenStack } from "./screens/DetailScreen/HomeScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import BleManager from "react-native-ble-manager";
 
 const initialBluetoothSettings = {
   wc: [],
@@ -32,6 +33,23 @@ const App = () => {
           );
           console.log("AsyncStorage initialized with main rooms.");
         }
+        console.log("Starting BleManager...");
+
+        BleManager.enableBluetooth()
+          .then(() => {
+            console.log("Bluetooth is already enabled");
+          })
+          .catch((error) => {
+            Alert.alert(
+              "Enable bluetooth",
+              "You need to enable bluetooth to use this app."
+            );
+          });
+
+        BleManager.start({ showAlert: false }).then(() => {
+          console.log("Module initialized");
+        });
+        console.log("BleManager started successfully.");
       } catch (error) {
         console.error("Error initializing AsyncStorage: ", error);
       }

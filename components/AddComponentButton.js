@@ -25,7 +25,7 @@ const AddComponentButton = ({ room, updateItems }) => {
 
       // Add the new component to the specified room
       bluetoothSettings[room] = bluetoothSettings[room] || [];
-      bluetoothSettings[room].push({ name, key: formattedKey });
+      bluetoothSettings[room].push({ name, key: formattedKey, state: 0 });
 
       // Save the updated data back to AsyncStorage
       await AsyncStorage.setItem(
